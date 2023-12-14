@@ -1,0 +1,22 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.tabSize": 2,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.guides.bracketPairs": true,
+  "files.insertFinalNewline": true,
+  "eslint.options": {
+    "extensions": [".html"]
+  },
+  "eslint.workingDirectories": [".eslintrc", ".eslintignore"],
+  "eslint.validate": ["javascript", "html"],
+  "prettier.configPath": ".prettierrc",
+  "[html]": {
+    "editor.codeActionsOnSave": { "source.fixAll": "always" },
+    "editor.formatOnSave": true
+  },
+  "git.ignoreLimitWarning": true
+}
