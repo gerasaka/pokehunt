@@ -2,7 +2,14 @@
   "name": "pokehunt",
   "version": "1.0.0",
   "description": "Hunt and collect your Pokemon!",
-  "main": "index.js",
+  "private" : true,
   "author": "gerasaka",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
 }
