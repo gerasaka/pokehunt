@@ -1,0 +1,8 @@
+{
+  "name": "pokehunt",
+  "version": "1.0.0",
+  "description": "Hunt and collect your Pokemon!",
+  "main": "index.js",
+  "author": "gerasaka",
+  "license": "MIT"
+}
