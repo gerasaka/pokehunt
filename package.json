@@ -14,6 +14,7 @@
   "devDependencies": {
     "css-loader": "^6.8.1",
     "eslint": "^8.55.0",
+    "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.4",
     "prettier": "3.1.1",
     "style-loader": "^3.3.3",

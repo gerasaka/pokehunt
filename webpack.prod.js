@@ -7,5 +7,7 @@ module.exports = merge(common, {
   output: {
     filename: "main.[hash].js",
     path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: 'assets/images/[hash][ext][query]',
+    clean: true,
   },
 });
