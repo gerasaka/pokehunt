@@ -7,6 +7,7 @@ module.exports = merge(common, {
     filename: "main.js",
     assetModuleFilename: "assets/images/[name][ext]",
   },
+  devtool: "source-map",
   module: {
     rules: [{ test: /\.css$/, use: ["style-loader", { loader: "css-loader" }] }],
   },

@@ -10,6 +10,25 @@ module.exports = merge(common, {
     assetModuleFilename: "assets/images/[hash][ext]",
     clean: true,
   },
-  module: { rules: [{ test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] }] },
-  plugins: [new MiniCssExtractPlugin({ filename: "[name].[hash].css" }), new OptimizeCssAssetsPlugin()],
+  module: {
+    rules: [
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        ]
+      }
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),
+    new OptimizeCssAssetsPlugin(),
+  ],
 });
