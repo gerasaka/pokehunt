@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "start": "webpack serve --config webpack.dev.js",
     "lint": "eslint",
     "format": "npx prettier ./src --write"
@@ -16,6 +17,8 @@
     "eslint": "^8.55.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.4",
+    "mini-css-extract-plugin": "^2.7.6",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "prettier": "3.1.1",
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
