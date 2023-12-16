@@ -12,19 +12,22 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
-      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        ]
-      }
+              presets: ["@babel/preset-env"],
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

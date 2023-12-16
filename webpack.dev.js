@@ -9,6 +9,11 @@ module.exports = merge(common, {
   },
   devtool: "source-map",
   module: {
-    rules: [{ test: /\.css$/, use: ["style-loader", { loader: "css-loader" }] }],
+    rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+    ],
   },
 });
