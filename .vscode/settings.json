@@ -18,6 +18,9 @@
     "editor.codeActionsOnSave": { "source.fixAll": "always" },
     "editor.formatOnSave": true
   },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
   "git.ignoreLimitWarning": true,
   "files.associations": {
     "*.css": "tailwindcss"
