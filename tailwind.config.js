@@ -5,8 +5,16 @@ module.exports = {
   purge: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
-      colors: { transparent: "transparent" },
+      colors: {
+        transparent: "transparent",
+        "ph-yellow": "#fecb01",
+        "ph-blue": "#355fab",
+        "ph-dark-blue": "#26498a",
+      },
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["lemonade"],
+  },
 };
