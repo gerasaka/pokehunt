@@ -7,7 +7,7 @@ module.exports = merge(common, {
   mode: "production",
   output: {
     filename: "main.[hash].js",
-    assetModuleFilename: "assets/images/[hash][ext]",
+    assetModuleFilename: "assets/[hash][ext]",
     clean: true,
   },
   module: {

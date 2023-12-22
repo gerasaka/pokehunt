@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PokeHunt</title>
+    <link rel="icon" href="./assets/pokehunt.ico" type="image/x-icon" />
   </head>
-  <body>
-    <h1 class="text-white">PokeHunt</h1>
-    <button class="btn">Button</button>
-    <img src="./assets/images/ph.png" alt="PH logo" />
+  <body class="flex flex-col gap-6 p-4">
+    <div class="navbar bg-base-100">
+      <div class="flex flex-1 items-center gap-3">
+        <a href="http://localhost:8080/">
+          <img src="./assets/pokehunt.png" alt="pokehunt logo" class="h-16" />
+        </a>
+      </div>
+
+      <div class="flex-none">O</div>
+    </div>
+
+    <div class="join">
+      <input class="input join-item input-bordered" placeholder="Search" />
+      <button class="btn join-item">Search</button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5" id="list-container"></div>
+
+    <div class="join grid grid-cols-2">
+      <button class="btn btn-outline join-item">Previous page</button>
+      <button class="btn btn-outline join-item">Next</button>
+    </div>
   </body>
 </html>

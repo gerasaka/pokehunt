@@ -5,7 +5,7 @@ module.exports = merge(common, {
   mode: "development",
   output: {
     filename: "main.js",
-    assetModuleFilename: "assets/images/[name][ext]",
+    assetModuleFilename: "assets/[name][ext]",
   },
   devtool: "source-map",
   module: {
