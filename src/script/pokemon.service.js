@@ -1,14 +1,14 @@
 export class PokemonService {
   pokemonList = [];
   next = null;
-  prev = null;
+  previous = null;
 
   fetchPokemonList(listUrl) {
     return fetch(listUrl)
       .then((response) => response.json())
       .then((data) => {
         this.next = data.next;
-        this.prev = data.prev;
+        this.previous = data.previous;
         return data.results;
       })
       .catch((e) => console.log("error when getting pokemon list", e));
@@ -36,6 +36,7 @@ export class PokemonService {
           base: stat.base_stat,
         })),
         imageUrl: details.sprites.front_default,
+        abilities: details.abilities.map((ability) => ability.ability.name),
       },
     };
   }
@@ -58,7 +59,7 @@ export class PokemonService {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${query}`).then((res) => res.json());
   }
 
-  catchPokemon() {}
+  static catchPokemon() {}
 
   savePokemon() {}
 
