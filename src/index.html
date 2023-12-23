@@ -24,9 +24,10 @@
 
     <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5" id="list-container"></div>
 
-    <div class="join grid grid-cols-2">
-      <button class="btn btn-outline join-item">Previous page</button>
-      <button class="btn btn-outline join-item">Next</button>
+    <div class="join flex justify-center">
+      <button class="btn join-item" id="prev-btn" disabled>«</button>
+      <div class="join-item p-3 text-center" id="curr-page">Page 1</div>
+      <button class="btn join-item" id="next-btn" disabled>»</button>
     </div>
   </body>
 </html>
