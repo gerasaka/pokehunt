@@ -7,7 +7,7 @@
     <link rel="icon" href="./assets/pokehunt.ico" type="image/x-icon" />
   </head>
   <body class="mx-auto flex max-w-screen-lg flex-col gap-6 p-4 md:p-10">
-    <div class="navbar bg-base-100">
+    <div class="navbar">
       <div class="flex flex-1 items-center gap-3">
         <a href="http://localhost:8080/">
           <img src="./assets/pokehunt.png" alt="pokehunt logo" class="h-16" />
@@ -18,28 +18,26 @@
     </div>
 
     <div class="join">
-      <input class="input join-item input-bordered" placeholder="Search" />
-      <button class="btn join-item">Search</button>
+      <input
+        id="search-input"
+        class="input join-item input-primary w-full md:w-1/3"
+        placeholder="Search pokemon by name or id"
+      />
+      <button id="search-btn" class="btn btn-primary join-item">Search O</button>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5" id="list-container"></div>
+    <h1 class="text-2xl font-bold">Collect them all!</h1>
+
+    <div
+      id="list-container"
+      class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5"
+      style="margin-top: -20px"
+    ></div>
 
     <div class="flex items-center justify-center gap-4">
-      <div
-        class="text-ph-blue border-ph-blue hover:bg-ph-blue hover:text-ph-yellow flex h-14 w-14 items-center justify-center rounded-full border text-2xl transition"
-        id="prev-btn"
-        disabled
-      >
-        «
-      </div>
+      <button id="prev-btn" class="btn-nav btn h-14 w-14 text-2xl transition" disabled>«</button>
       <div class="p-3 text-center font-bold" id="curr-page">Page 1</div>
-      <div
-        class="text-ph-blue border-ph-blue hover:bg-ph-blue hover:text-ph-yellow flex h-14 w-14 items-center justify-center rounded-full border text-2xl transition"
-        id="next-btn"
-        disabled
-      >
-        »
-      </div>
+      <button id="next-btn" class="btn-nav btn h-14 w-14 text-2xl transition" disabled>»</button>
     </div>
   </body>
 </html>

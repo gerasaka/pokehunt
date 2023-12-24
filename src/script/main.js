@@ -4,16 +4,20 @@ import { snakeToTitleCase } from "./utils/string";
 const pokemonService = new PokemonService();
 
 const listContainer = document.getElementById("list-container");
+
 const prevbtn = document.getElementById("prev-btn");
 const nextbtn = document.getElementById("next-btn");
 const currIndicator = document.getElementById("curr-page");
+
+const searchInput = document.getElementById("search-input");
+document.getElementById("search-btn").addEventListener("click", searchPokemon);
 
 const loadPokemonList = () => {
   const listItem = (pokemon, index) => {
     const container = document.createElement("a");
     container.setAttribute(
       "class",
-      "hover:bg-ph-dark-blue border-ph-dark-blue text-ph-blue hover:text-ph-yellow mt-8 rounded-lg border transition hover:shadow-xl p-3",
+      "hover:bg-ph-dark-blue border-ph-dark-blue text-ph-blue hover:text-ph-yellow mt-8 rounded-lg border p-3 transition hover:shadow-xl",
     );
     container.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
     container.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
@@ -64,6 +68,25 @@ const next = () => {
       console.error("error when get next data", e);
     });
 };
+
+async function searchPokemon() {
+  const query = searchInput.value.toLowerCase().trim();
+
+  if (query === "") {
+    await pokemonService.generatePokemonList();
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+    const data = await response.json();
+
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    alert("Pokémon not found. Please try another search term.");
+  }
+}
 
 const main = async () => {
   if (pokemonService.checkSession()) {
