@@ -45,8 +45,8 @@ const prev = () => {
   pokemonService
     .generatePokemonList(pokemonService.previous)
     .then(() => {
-      loadPokemonList();
       pokemonService.currentPage -= 1;
+      loadPokemonList();
     })
     .catch((e) => console.error("error when get previous data", e));
 };
@@ -55,17 +55,17 @@ const next = () => {
   pokemonService
     .generatePokemonList(pokemonService.next)
     .then(() => {
-      loadPokemonList();
       pokemonService.currentPage += 1;
+      loadPokemonList();
     })
     .catch((e) => console.error("error when get next data", e));
 };
 
 const main = async () => {
-  let initListUrl = "";
-  if (pokemonService.checkSession()) initListUrl = pokemonService.activeListUrl;
+  if (pokemonService.checkSession()) {
+    await pokemonService.generatePokemonList(pokemonService.activeListUrl);
+  } else await pokemonService.generatePokemonList();
 
-  await pokemonService.generatePokemonList(initListUrl);
   loadPokemonList();
 
   prevbtn.addEventListener("click", prev);
