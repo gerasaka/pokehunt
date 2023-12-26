@@ -10,12 +10,13 @@ const currIndicator = document.getElementById("curr-page");
 let currentPage = 1;
 
 const loadPokemonList = () => {
-  const listItem = (pokemon) => {
+  const listItem = (pokemon, index) => {
     const container = document.createElement("a");
     container.setAttribute(
       "class",
       "hover:bg-ph-dark-blue border-ph-dark-blue text-ph-blue hover:text-ph-yellow mt-8 rounded-lg border transition hover:shadow-xl p-3",
     );
+    container.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
 
     container.innerHTML = `
       <img
@@ -33,8 +34,8 @@ const loadPokemonList = () => {
   /** reset pokemon list */
   listContainer.innerHTML = "";
 
-  pokemonService.pokemonList.forEach((pokemon) => {
-    listContainer.appendChild(listItem(pokemon));
+  pokemonService.pokemonList.forEach((pokemon, i) => {
+    listContainer.appendChild(listItem(pokemon, i));
   });
 
   if (pokemonService.previous) prevbtn.removeAttribute("disabled");

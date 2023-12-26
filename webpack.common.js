@@ -1,21 +1,16 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { populatePageEntries, populateHtmlPlugins } = require("./src/script/utils/config");
+
+const pages = ["main", "details"];
 
 module.exports = {
-  entry: "./src/app.js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-  },
+  entry: populatePageEntries(pages),
+  output: { path: path.resolve(__dirname, "dist") },
   module: {
     rules: [
       { test: /\.(png|jpg|jpeg|svg|webp|gif)$/i, type: "asset/resource" },
       { test: /\.html$/i, loader: "html-loader" },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-    }),
-  ],
+  plugins: populateHtmlPlugins(pages),
 };
