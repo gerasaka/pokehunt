@@ -7,8 +7,6 @@ const prevbtn = document.getElementById("prev-btn");
 const nextbtn = document.getElementById("next-btn");
 const currIndicator = document.getElementById("curr-page");
 
-let currentPage = 1;
-
 const loadPokemonList = () => {
   const listItem = (pokemon, index) => {
     const container = document.createElement("a");
@@ -40,6 +38,7 @@ const loadPokemonList = () => {
 
   if (pokemonService.previous) prevbtn.removeAttribute("disabled");
   if (pokemonService.next) nextbtn.removeAttribute("disabled");
+  currIndicator.innerHTML = `Page ${pokemonService.currentPage}`;
 };
 
 const prev = () => {
@@ -47,10 +46,9 @@ const prev = () => {
     .generatePokemonList(pokemonService.previous)
     .then(() => {
       loadPokemonList();
-      currentPage -= 1;
-      currIndicator.innerHTML = `Page ${currentPage}`;
+      pokemonService.currentPage -= 1;
     })
-    .catch((e) => console.log("error when get previous data", e));
+    .catch((e) => console.error("error when get previous data", e));
 };
 
 const next = () => {
@@ -58,18 +56,20 @@ const next = () => {
     .generatePokemonList(pokemonService.next)
     .then(() => {
       loadPokemonList();
-      currentPage += 1;
-      currIndicator.innerHTML = `Page ${currentPage}`;
+      pokemonService.currentPage += 1;
     })
-    .catch((e) => console.log("error when get next data", e));
+    .catch((e) => console.error("error when get next data", e));
 };
 
 const main = async () => {
-  await pokemonService.generatePokemonList();
+  let initListUrl = "";
+  if (pokemonService.checkSession()) initListUrl = pokemonService.activeListUrl;
+
+  await pokemonService.generatePokemonList(initListUrl);
   loadPokemonList();
 
   prevbtn.addEventListener("click", prev);
   nextbtn.addEventListener("click", next);
 };
 
-export default main;
+document.addEventListener("DOMContentLoaded", main);
