@@ -15,6 +15,7 @@ const loadPokemonList = () => {
       "hover:bg-ph-dark-blue border-ph-dark-blue text-ph-blue hover:text-ph-yellow mt-8 rounded-lg border transition hover:shadow-xl p-3",
     );
     container.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
+    container.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
 
     container.innerHTML = `
       <img

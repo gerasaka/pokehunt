@@ -40,6 +40,16 @@ export class PokemonService {
     sessionStorage.setItem("pokeSession", JSON.stringify(pokeSession));
   }
 
+  get pokemonDetails() {
+    const rawDetails = sessionStorage.getItem("pokeDetails");
+    if (rawDetails) return JSON.parse(rawDetails);
+    else return {};
+  }
+
+  set pokemonDetails(details) {
+    sessionStorage.setItem("pokeDetails", JSON.stringify(details));
+  }
+
   fetchPokemonList(listUrl) {
     return fetch(listUrl)
       .then((response) => response.json())
