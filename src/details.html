@@ -6,7 +6,167 @@
     <title>Pokehunt</title>
     <link rel="icon" href="./assets/pokehunt.ico" type="image/x-icon" />
   </head>
-  <body>
-    <button class="btn" onclick="history.back()"><- Back</button>
+  <body class="mx-auto max-w-screen-lg p-4 md:p-10">
+    <button class="btn btn-ghost" onclick="history.back()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+        />
+      </svg>
+      Back
+    </button>
+
+    <div>
+      <div class="relative my-4">
+        <img
+          src="./assets/scenery-1.jpg"
+          alt=""
+          class="absolute -z-10 h-full rounded-lg object-cover"
+        />
+
+        <div class="p-4">
+          <div class="mx-auto w-fit rounded-lg p-4 backdrop-blur-md">
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/15.gif"
+              alt=""
+              class="z-10 mx-auto h-52 rounded-lg"
+            />
+            <h1 class="text-ph-yellow text-center text-5xl font-bold">beedrill</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-ph-dark-blue mx-auto flex max-w-sm gap-3 rounded-xl border p-4">
+        <span class="flex-1">
+          <p>Height</p>
+          <p class="inline text-lg font-bold">1 m</p>
+          <p class="inline text-sm text-gray-500">( 3,3 ft )</p>
+        </span>
+        <span class="bg-ph-dark-blue h-10 w-px self-center"></span>
+        <span class="flex-1 text-right">
+          <p class="text-right">Weight</p>
+          <p class="inline text-lg font-bold">99,9 kg</p>
+          <p class="inline text-sm text-gray-500">( 224 lb )</p>
+        </span>
+      </div>
+
+      <div class="my-8">
+        <h2 class="text-ph-blue mb-4 text-xl font-bold">Abilities</h2>
+        <p class="badge badge-ghost badge-lg">swarm</p>
+        <p class="badge badge-ghost badge-lg">sniper</p>
+      </div>
+
+      <div>
+        <h2 class="text-ph-blue mb-4 text-xl font-bold">Statistics</h2>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div class="grid grid-cols-2 gap-6 md:col-span-2">
+            <div class="rounded-xl border p-3">
+              <p class="mb-1">Hp</p>
+              <div class="flex items-center gap-4">
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="65"
+                  class="range range-primary range-xs"
+                  disabled
+                />
+                <p class="text-ph-blue text-right text-3xl font-bold">65</p>
+              </div>
+            </div>
+            <div class="h-20 rounded-xl border p-3">
+              <p>Attack</p>
+
+              <div class="flex items-center gap-4">
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="90"
+                  class="range range-primary range-xs"
+                  disabled
+                />
+                <p class="text-ph-blue text-right text-3xl font-bold">90</p>
+              </div>
+            </div>
+            <div class="h-20 rounded-xl border p-3">
+              <p>Defense</p>
+              <div class="flex items-center gap-4">
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="40"
+                  class="range range-primary range-xs"
+                  disabled
+                />
+                <p class="text-ph-blue text-right text-3xl font-bold">40</p>
+              </div>
+            </div>
+            <div class="h-20 rounded-xl border p-3">
+              <p>Speed</p>
+              <div class="flex items-center gap-4">
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="75"
+                  class="range range-primary range-xs"
+                  disabled
+                />
+                <p class="text-ph-blue text-right text-3xl font-bold">75</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-1">
+            <div class="bg-ph-yellow h-20 rounded-xl p-3">
+              <p>Special Attack</p>
+              <div class="flex items-center justify-between gap-4">
+                <div>O</div>
+
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="45"
+                  class="range range-secondary range-xs"
+                  disabled
+                />
+
+                <p class="text-3xl font-bold">45</p>
+              </div>
+            </div>
+            <div class="bg-ph-yellow h-20 rounded-xl p-3">
+              <p>Special Defense</p>
+              <div class="flex items-center justify-between gap-4">
+                <div>O</div>
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value="80"
+                  class="range range-secondary range-xs"
+                  disabled
+                />
+                <p class="text-right text-3xl font-bold">80</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-circle btn-ghost">O</button>
+    </div>
   </body>
 </html>
