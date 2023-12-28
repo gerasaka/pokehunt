@@ -19,12 +19,12 @@ const loadPokemonList = () => {
 
     container.innerHTML = `
       <img
-        src=${pokemon.details.imageUrl}
+        src=${pokemon.sprites.official}
         alt="image of ${pokemon.name}"
         class="w-full"
         style="margin-top: -35%"
       />
-      <h2 class="text-center text-xl font-bold md:text-2xl lg:text-3xl">${pokemon.name}</h2>
+      <h2 class="text-center text-xl font-bold md:text-2xl">${pokemon.name}</h2>
     `;
 
     return container;
@@ -43,23 +43,25 @@ const loadPokemonList = () => {
 };
 
 const prev = () => {
+  pokemonService.currentPage -= 1;
   pokemonService
     .generatePokemonList(pokemonService.previous)
-    .then(() => {
-      pokemonService.currentPage -= 1;
-      loadPokemonList();
-    })
-    .catch((e) => console.error("error when get previous data", e));
+    .then(() => loadPokemonList())
+    .catch((e) => {
+      pokemonService.currentPage += 1;
+      console.error("error when get previous data", e);
+    });
 };
 
 const next = () => {
+  pokemonService.currentPage += 1;
   pokemonService
     .generatePokemonList(pokemonService.next)
-    .then(() => {
-      pokemonService.currentPage += 1;
-      loadPokemonList();
-    })
-    .catch((e) => console.error("error when get next data", e));
+    .then(() => loadPokemonList())
+    .catch((e) => {
+      pokemonService.currentPage -= 1;
+      console.error("error when get next data", e);
+    });
 };
 
 const main = async () => {
