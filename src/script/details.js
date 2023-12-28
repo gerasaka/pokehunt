@@ -6,6 +6,7 @@ import scenery1 from "../assets/scenery-1.jpg";
 import scenery2 from "../assets/scenery-2.jpg";
 import scenery3 from "../assets/scenery-3.jpg";
 import scenery4 from "../assets/scenery-4.jpg";
+import { snakeToTitleCase } from "./utils/string";
 
 scenery1;
 scenery2;
@@ -20,7 +21,7 @@ const loadHeader = ({ name, details, sprites }) => {
   document
     .getElementById("scenery")
     .setAttribute("src", SCENERY[Math.floor(Math.random() * 4) + 1]);
-  document.querySelector("h1").innerHTML = name;
+  document.querySelector("h1").innerHTML = snakeToTitleCase(name);
 
   const spriteImg = document.getElementById("pokemon-sprite");
   spriteImg.setAttribute("src", sprites.animated);
@@ -58,7 +59,7 @@ const loadAbilities = (abilities) => {
   const createBadge = (ability) => {
     const el = document.createElement("p");
     el.setAttribute("class", "badge badge-ghost badge-lg");
-    el.innerText = ability;
+    el.innerText = snakeToTitleCase(ability);
 
     return el.outerHTML;
   };
@@ -96,7 +97,7 @@ const loadStatistic = (stats) => {
     el.setAttribute("class", "rounded-xl border p-3");
 
     el.innerHTML = `
-      <p class="mb-1">${name}</p>
+      <p class="mb-1">${snakeToTitleCase(name)}</p>
       <div class="flex items-center gap-4">
         <input
           type="range"

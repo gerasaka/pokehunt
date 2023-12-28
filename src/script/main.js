@@ -1,4 +1,5 @@
 import { PokemonService } from "./pokemon.service";
+import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
 
@@ -24,7 +25,7 @@ const loadPokemonList = () => {
         class="w-full"
         style="margin-top: -35%"
       />
-      <h2 class="text-center text-xl font-bold md:text-2xl">${pokemon.name}</h2>
+      <h2 class="text-center text-xl font-bold md:text-2xl">${snakeToTitleCase(pokemon.name)}</h2>
     `;
 
     return container;
