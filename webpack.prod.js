@@ -6,7 +6,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = merge(common, {
   mode: "production",
   output: {
-    filename: "main.[hash].js",
+    filename: "[name].[hash].js",
     assetModuleFilename: "assets/[hash][ext]",
     clean: true,
   },

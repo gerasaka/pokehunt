@@ -1,4 +1,5 @@
 import { PokemonService } from "./pokemon.service";
+import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
 
@@ -7,24 +8,24 @@ const prevbtn = document.getElementById("prev-btn");
 const nextbtn = document.getElementById("next-btn");
 const currIndicator = document.getElementById("curr-page");
 
-let currentPage = 1;
-
 const loadPokemonList = () => {
-  const listItem = (pokemon) => {
+  const listItem = (pokemon, index) => {
     const container = document.createElement("a");
     container.setAttribute(
       "class",
       "hover:bg-ph-dark-blue border-ph-dark-blue text-ph-blue hover:text-ph-yellow mt-8 rounded-lg border transition hover:shadow-xl p-3",
     );
+    container.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
+    container.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
 
     container.innerHTML = `
       <img
-        src=${pokemon.details.imageUrl}
+        src=${pokemon.sprites.official}
         alt="image of ${pokemon.name}"
         class="w-full"
         style="margin-top: -35%"
       />
-      <h2 class="text-center text-xl font-bold md:text-2xl lg:text-3xl">${pokemon.name}</h2>
+      <h2 class="text-center text-xl font-bold md:text-2xl">${snakeToTitleCase(pokemon.name)}</h2>
     `;
 
     return container;
@@ -33,42 +34,46 @@ const loadPokemonList = () => {
   /** reset pokemon list */
   listContainer.innerHTML = "";
 
-  pokemonService.pokemonList.forEach((pokemon) => {
-    listContainer.appendChild(listItem(pokemon));
+  pokemonService.pokemonList.forEach((pokemon, i) => {
+    listContainer.appendChild(listItem(pokemon, i));
   });
 
   if (pokemonService.previous) prevbtn.removeAttribute("disabled");
   if (pokemonService.next) nextbtn.removeAttribute("disabled");
+  currIndicator.innerHTML = `Page ${pokemonService.currentPage}`;
 };
 
 const prev = () => {
+  pokemonService.currentPage -= 1;
   pokemonService
     .generatePokemonList(pokemonService.previous)
-    .then(() => {
-      loadPokemonList();
-      currentPage -= 1;
-      currIndicator.innerHTML = `Page ${currentPage}`;
-    })
-    .catch((e) => console.log("error when get previous data", e));
+    .then(() => loadPokemonList())
+    .catch((e) => {
+      pokemonService.currentPage += 1;
+      console.error("error when get previous data", e);
+    });
 };
 
 const next = () => {
+  pokemonService.currentPage += 1;
   pokemonService
     .generatePokemonList(pokemonService.next)
-    .then(() => {
-      loadPokemonList();
-      currentPage += 1;
-      currIndicator.innerHTML = `Page ${currentPage}`;
-    })
-    .catch((e) => console.log("error when get next data", e));
+    .then(() => loadPokemonList())
+    .catch((e) => {
+      pokemonService.currentPage -= 1;
+      console.error("error when get next data", e);
+    });
 };
 
 const main = async () => {
-  await pokemonService.generatePokemonList();
+  if (pokemonService.checkSession()) {
+    await pokemonService.generatePokemonList(pokemonService.activeListUrl);
+  } else await pokemonService.generatePokemonList();
+
   loadPokemonList();
 
   prevbtn.addEventListener("click", prev);
   nextbtn.addEventListener("click", next);
 };
 
-export default main;
+document.addEventListener("DOMContentLoaded", main);
