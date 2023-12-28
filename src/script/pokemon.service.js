@@ -82,8 +82,12 @@ export class PokemonService {
           name: stat.stat.name,
           base: stat.base_stat,
         })),
-        imageUrl: details.sprites.front_default,
         abilities: details.abilities.map((ability) => ability.ability.name),
+      },
+      sprites: {
+        img: details.sprites.front_default,
+        official: details.sprites.other["official-artwork"].front_default,
+        animated: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${details.id}.gif`,
       },
     };
   }
