@@ -8,11 +8,9 @@
   </head>
   <body class="mx-auto flex max-w-screen-lg flex-col gap-6 p-4 md:p-10">
     <div class="navbar flex-col justify-between md:flex-row">
-      <div class="">
-        <a href="http://localhost:8080/">
-          <img src="./assets/pokehunt.png" alt="pokehunt logo" class="h-16" />
-        </a>
-      </div>
+      <a href="http://localhost:8080/">
+        <img src="./assets/pokehunt.png" alt="pokehunt logo" class="h-16" />
+      </a>
 
       <div class="join mt-4 md:mt-0">
         <input
@@ -50,7 +48,7 @@
 
     <div class="flex items-center justify-center gap-4">
       <button id="prev-btn" class="btn-nav btn h-14 w-14 text-2xl transition" disabled>«</button>
-      <div class="p-3 text-center font-bold" id="curr-page">Page 1</div>
+      <div class="p-3 text-center font-bold" id="curr-page"></div>
       <button id="next-btn" class="btn-nav btn h-14 w-14 text-2xl transition" disabled>»</button>
     </div>
   </body>

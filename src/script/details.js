@@ -1,17 +1,12 @@
 import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
 import { SCENERY } from "./constant/scenery";
 import { PokemonService } from "./pokemon.service";
-
-import scenery1 from "../assets/scenery-1.jpg";
-import scenery2 from "../assets/scenery-2.jpg";
-import scenery3 from "../assets/scenery-3.jpg";
-import scenery4 from "../assets/scenery-4.jpg";
 import { snakeToTitleCase } from "./utils/string";
 
-scenery1;
-scenery2;
-scenery3;
-scenery4;
+import "../assets/scenery-1.jpg";
+import "../assets/scenery-2.jpg";
+import "../assets/scenery-3.jpg";
+import "../assets/scenery-4.jpg";
 
 const pokemonService = new PokemonService();
 
