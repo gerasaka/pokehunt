@@ -47,7 +47,14 @@ const loadPokemonList = () => {
   currIndicator.innerHTML = `Page ${pokemonService.currentPage}`;
 };
 
+const renderLoadingState = () => {
+  listContainer.innerHTML = Array(20)
+    .fill('<div class="mt-8 rounded-lg skeleton h-36 md:h-40 w-full"></div>')
+    .join("");
+};
+
 const prev = () => {
+  renderLoadingState();
   pokemonService.currentPage -= 1;
   pokemonService
     .generatePokemonList(pokemonService.previous)
@@ -59,6 +66,7 @@ const prev = () => {
 };
 
 const next = () => {
+  renderLoadingState();
   pokemonService.currentPage += 1;
   pokemonService
     .generatePokemonList(pokemonService.next)
@@ -88,6 +96,8 @@ async function searchPokemon() {
 }
 
 const main = async () => {
+  renderLoadingState();
+
   if (pokemonService.checkSession()) {
     await pokemonService.generatePokemonList(pokemonService.activeListUrl);
   } else await pokemonService.generatePokemonList();
