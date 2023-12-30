@@ -78,10 +78,9 @@ async function searchPokemon() {
   }
 
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
-    const data = await response.json();
-
-    console.log(data);
+    const data = await pokemonService.searchPokemon(query);
+    pokemonService.pokemonDetails = data;
+    window.location.href = `http://localhost:8080/details.html?id=${data.id}`;
   } catch (error) {
     console.error("Error fetching data:", error);
     alert("Pokémon not found. Please try another search term.");

@@ -64,8 +64,7 @@ export class PokemonService {
   async fetchPokemonDetails(detailsUrl) {
     try {
       const response = await fetch(detailsUrl);
-      const data = await response.json();
-      return data;
+      return await response.json();
     } catch (e) {
       console.error("error when getting pokemon list", e);
     }
@@ -108,15 +107,8 @@ export class PokemonService {
     }
   }
 
-  searchPokemon(query) {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${query}`).then((res) => res.json());
+  async searchPokemon(query) {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+    return this.cleanPokemonDetails(await res.json());
   }
-
-  static catchPokemon() {}
-
-  savePokemon() {}
-
-  releasePokemon() {}
-
-  releaseAllPokemon() {}
 }
