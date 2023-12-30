@@ -53,7 +53,7 @@ const loadAbilities = (abilities) => {
 
   const createBadge = (ability) => {
     const el = document.createElement("p");
-    el.setAttribute("class", "badge badge-ghost badge-lg");
+    el.setAttribute("class", "badge border-none bg-gray-200 badge-lg");
     el.innerText = snakeToTitleCase(ability);
 
     return el.outerHTML;
