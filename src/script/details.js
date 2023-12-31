@@ -1,12 +1,12 @@
-import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
-import { SCENERY } from "./constant/scenery";
-import { PokemonService } from "./pokemon.service";
-import { snakeToTitleCase } from "./utils/string";
-
 import "../assets/scenery-1.jpg";
 import "../assets/scenery-2.jpg";
 import "../assets/scenery-3.jpg";
 import "../assets/scenery-4.jpg";
+
+import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
+import { SCENERY } from "./constant/scenery";
+import { PokemonService } from "./pokemon.service";
+import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
 
@@ -60,7 +60,7 @@ const loadAbilities = (abilities) => {
   };
 
   wrapper.innerHTML = `
-    <h2 class="text-ph-blue mb-4 text-xl font-bold">Abilities</h2>
+    <h2 class="text-secondary mb-4 text-xl font-bold">Abilities</h2>
     <div class="flex gap-2 flex-wrap">
       ${abilities.map(createBadge).join("")}
     </div>
@@ -71,7 +71,8 @@ const loadAbilities = (abilities) => {
 
 const loadStatistic = (stats) => {
   const wrapper = document.createElement("div");
-  wrapper.innerHTML = '<h2 class="text-ph-blue mb-4 text-center text-xl font-bold">Statistics</h2>';
+  wrapper.innerHTML =
+    '<h2 class="text-secondary mb-4 text-center text-xl font-bold">Statistics</h2>';
   const statsContainer = document.createElement("div");
   statsContainer.setAttribute("class", "grid grid-cols-1 gap-6 md:grid-cols-3");
   const basicStat = document.createElement("div");
@@ -102,7 +103,7 @@ const loadStatistic = (stats) => {
           class="range range-primary range-xs"
           disabled
         />
-        <p class="text-ph-blue text-right text-3xl font-bold">${base}</p>
+        <p class="text-secondary text-right text-3xl font-bold">${base}</p>
       </div>
     `;
 

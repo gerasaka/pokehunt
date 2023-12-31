@@ -1,6 +1,6 @@
 export const SP_ATTACK_EL = (value) => {
   const el = document.createElement("div");
-  el.setAttribute("class", "bg-ph-yellow rounded-xl p-3");
+  el.setAttribute("class", "bg-primary rounded-xl p-3");
   el.innerHTML = `
       <p class="mb-1">Special Attack</p>
       <div class="flex items-center justify-between gap-4">
@@ -43,7 +43,7 @@ export const SP_ATTACK_EL = (value) => {
 
 export const SP_DEFENSE_EL = (value) => {
   const el = document.createElement("div");
-  el.setAttribute("class", "bg-ph-yellow rounded-xl p-3");
+  el.setAttribute("class", "bg-primary rounded-xl p-3");
   el.innerHTML = `
       <p class="mb-1">Special Defense</p>
       <div class="flex items-center justify-between gap-4">
