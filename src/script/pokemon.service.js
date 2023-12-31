@@ -2,6 +2,8 @@ export class PokemonService {
   pokemonList = [];
   next = null;
   previous = null;
+  last = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20";
+  lastPageNumber = 0;
   _activePage = {
     number: 1,
     listUrl: "",
@@ -54,8 +56,12 @@ export class PokemonService {
     return fetch(listUrl)
       .then((response) => response.json())
       .then((data) => {
+        const lastPage = Math.ceil(data.count / 20);
+
         this.next = data.next;
         this.previous = data.previous;
+        this.last = `https://pokeapi.co/api/v2/pokemon?offset=${(lastPage - 1) * 20}&limit=20`;
+        this.lastPageNumber = lastPage;
         return data.results;
       })
       .catch((e) => console.error("error when getting pokemon list", e));
@@ -108,7 +114,6 @@ export class PokemonService {
   }
 
   async searchPokemon(query) {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
-    return this.cleanPokemonDetails(await res.json());
+    return await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
   }
 }
