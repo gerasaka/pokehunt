@@ -1,3 +1,4 @@
+import "./components/poke-card";
 import { PaginationService } from "./pagination";
 import { PokemonService } from "./pokemon.service";
 import { snakeToTitleCase } from "./utils/string";
@@ -14,25 +15,14 @@ document.getElementById("search-btn").addEventListener("click", handleSearch);
 
 export const renderPokemonList = () => {
   const listItem = (pokemon, index) => {
-    const container = document.createElement("a");
-    container.setAttribute(
-      "class",
-      "hover:bg-ph-dark-blue border-ph-dark-blue text-secondary hover:text-primary mt-8 rounded-lg border p-3 transition hover:shadow-xl",
-    );
-    container.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
-    container.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
+    const pokeCard = document.createElement("poke-card");
+    pokeCard.setAttribute("image", pokemon.sprites.official);
+    pokeCard.setAttribute("name", snakeToTitleCase(pokemon.name));
+    pokeCard.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
 
-    container.innerHTML = `
-      <img
-        src=${pokemon.sprites.official}
-        alt="image of ${pokemon.name}"
-        class="w-full"
-        style="margin-top: -35%"
-      />
-      <h2 class="text-center text-xl font-bold md:text-2xl">${snakeToTitleCase(pokemon.name)}</h2>
-    `;
+    pokeCard.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
 
-    return container;
+    return pokeCard;
   };
 
   /** reset pokemon list */
@@ -79,6 +69,7 @@ const main = async () => {
 
   renderPokemonList();
   paginationService.initiatePagination();
+  errorModal.showModal();
 };
 
 document.addEventListener("DOMContentLoaded", main);
