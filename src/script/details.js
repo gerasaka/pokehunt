@@ -1,8 +1,3 @@
-import "../assets/scenery-1.jpg";
-import "../assets/scenery-2.jpg";
-import "../assets/scenery-3.jpg";
-import "../assets/scenery-4.jpg";
-
 import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
 import { SCENERY } from "./constant/scenery";
 import { PokemonService } from "./pokemon.service";
