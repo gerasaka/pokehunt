@@ -1,6 +1,6 @@
 import "./components/error-modal";
 import "./components/not-found-modal";
-import "./components/pagination";
+import "./components/pagination-bar";
 import "./components/poke-card";
 
 import { PaginationService } from "./pagination";
