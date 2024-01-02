@@ -35,7 +35,7 @@ export class PaginationService {
     this.currIndicator.innerHTML = `Page ${pokemonService.currentPage}`;
   }
 
-  handlePageChange = (endpoint, setPageNumber, revertPageNumber) => {
+  handlePageChange(endpoint, setPageNumber, revertPageNumber) {
     renderLoadingState();
     setPageNumber();
 
@@ -46,7 +46,7 @@ export class PaginationService {
         revertPageNumber();
         errorModal.showModal();
       });
-  };
+  }
 
   initiatePagination() {
     const { _pokemonService: pokemonService, firstBtn, lastBtn, nextBtn, prevBtn } = this;

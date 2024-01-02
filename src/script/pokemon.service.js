@@ -52,19 +52,20 @@ export class PokemonService {
     sessionStorage.setItem("pokeDetails", JSON.stringify(details));
   }
 
-  fetchPokemonList(listUrl) {
-    return fetch(listUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const lastPage = Math.ceil(data.count / 20);
+  async fetchPokemonList(listUrl) {
+    try {
+      const response = await fetch(listUrl);
+      const data = await response.json();
+      const lastPage = Math.ceil(data.count / 20);
 
-        this.next = data.next;
-        this.previous = data.previous;
-        this.last = `https://pokeapi.co/api/v2/pokemon?offset=${(lastPage - 1) * 20}&limit=20`;
-        this.lastPageNumber = lastPage;
-        return data.results;
-      })
-      .catch((e) => console.error("error when getting pokemon list", e));
+      this.next = data.next;
+      this.previous = data.previous;
+      this.last = `https://pokeapi.co/api/v2/pokemon?offset=${(lastPage - 1) * 20}&limit=20`;
+      this.lastPageNumber = lastPage;
+      return data.results;
+    } catch (e) {
+      return console.error("error when getting pokemon list", e);
+    }
   }
 
   async fetchPokemonDetails(detailsUrl) {
@@ -109,7 +110,7 @@ export class PokemonService {
         }),
       );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error generating pokemon list:", error);
     }
   }
 
