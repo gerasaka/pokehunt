@@ -26,7 +26,7 @@
       Back
     </button>
 
-    <div id="details-content">
+    <div>
       <div class="relative my-4">
         <img
           id="scenery"
@@ -39,6 +39,21 @@
             <img id="pokemon-sprite" class="mx-auto h-52 rounded-lg" />
             <h1 class="text-center text-5xl font-bold text-primary"></h1>
           </div>
+        </div>
+      </div>
+
+      <div
+        id="basic-info"
+        class="border-ph-dark-blue mx-auto flex max-w-sm gap-3 rounded-xl border p-4"
+      ></div>
+
+      <div id="ability-container" class="my-8 flex flex-col items-center"></div>
+
+      <div>
+        <h2 class="mb-4 text-center text-xl font-bold text-secondary">Statistics</h2>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div id="basic-stats" class="grid grid-cols-2 gap-6 md:col-span-2"></div>
+          <div id="special-stats" class="grid grid-cols-2 gap-6 md:grid-cols-1"></div>
         </div>
       </div>
     </div>

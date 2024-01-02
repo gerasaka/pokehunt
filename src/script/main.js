@@ -1,24 +1,18 @@
+import { PaginationService } from "./pagination";
 import { PokemonService } from "./pokemon.service";
 import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
+const paginationService = new PaginationService(pokemonService);
 
 const listContainer = document.getElementById("list-container");
-
-// Pagination variables
-const currIndicator = document.getElementById("curr-page");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const firstBtn = document.getElementById("first-btn");
-const lastBtn = document.getElementById("last-btn");
-
-// Search variables
-const searchInput = document.getElementById("search-input");
 const notFoundModal = document.getElementById("not-found-modal");
-const errorModal = document.getElementById("error-modal");
-document.getElementById("search-btn").addEventListener("click", searchPokemon);
+export const errorModal = document.getElementById("error-modal");
 
-const loadPokemonList = () => {
+const searchInput = document.getElementById("search-input");
+document.getElementById("search-btn").addEventListener("click", handleSearch);
+
+export const renderPokemonList = () => {
   const listItem = (pokemon, index) => {
     const container = document.createElement("a");
     container.setAttribute(
@@ -48,45 +42,16 @@ const loadPokemonList = () => {
     listContainer.appendChild(listItem(pokemon, i));
   });
 
-  setNavigation();
+  paginationService.setPagination();
 };
 
-const setNavigation = () => {
-  if (pokemonService.currentPage === 1) firstBtn.disabled = true;
-  else firstBtn.disabled = false;
-
-  if (pokemonService.currentPage === pokemonService.lastPageNumber) lastBtn.disabled = true;
-  else lastBtn.disabled = false;
-
-  if (pokemonService.previous) prevBtn.disabled = false;
-  else prevBtn.disabled = true;
-
-  if (pokemonService.next) nextBtn.disabled = false;
-  else nextBtn.disabled = true;
-
-  currIndicator.innerHTML = `Page ${pokemonService.currentPage}`;
-};
-
-const renderLoadingState = () => {
+export const renderLoadingState = () => {
   listContainer.innerHTML = Array(20)
     .fill('<div class="mt-8 rounded-lg skeleton h-36 md:h-40 w-full"></div>')
     .join("");
 };
 
-const changePage = (endpoint, setPageNumber, revertPageNumber) => {
-  renderLoadingState();
-  setPageNumber();
-
-  pokemonService
-    .generatePokemonList(endpoint)
-    .then(() => loadPokemonList())
-    .catch(() => {
-      revertPageNumber();
-      errorModal.showModal();
-    });
-};
-
-async function searchPokemon() {
+async function handleSearch() {
   const query = searchInput.value.toLowerCase().trim();
 
   if (query === "") {
@@ -112,40 +77,8 @@ const main = async () => {
     await pokemonService.generatePokemonList(pokemonService.activeListUrl);
   } else await pokemonService.generatePokemonList();
 
-  loadPokemonList();
-
-  const sessionPageNumber = () => {
-    return JSON.parse(sessionStorage.getItem("pokeSession")).activePage;
-  };
-
-  prevBtn.addEventListener("click", () =>
-    changePage(
-      pokemonService.previous,
-      () => (pokemonService.currentPage -= 1),
-      () => (pokemonService.currentPage += 1),
-    ),
-  );
-  nextBtn.addEventListener("click", () =>
-    changePage(
-      pokemonService.next,
-      () => (pokemonService.currentPage += 1),
-      () => (pokemonService.currentPage -= 1),
-    ),
-  );
-  firstBtn.addEventListener("click", () =>
-    changePage(
-      `https://pokeapi.co/api/v2/pokemon`,
-      () => (pokemonService.currentPage = 1),
-      () => (pokemonService.currentPage = sessionPageNumber()),
-    ),
-  );
-  lastBtn.addEventListener("click", () =>
-    changePage(
-      pokemonService.last,
-      () => (pokemonService.currentPage = pokemonService.lastPageNumber),
-      () => (pokemonService.currentPage = sessionPageNumber()),
-    ),
-  );
+  renderPokemonList();
+  paginationService.initiatePagination();
 };
 
 document.addEventListener("DOMContentLoaded", main);

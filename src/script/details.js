@@ -1,8 +1,3 @@
-import "../assets/scenery-1.jpg";
-import "../assets/scenery-2.jpg";
-import "../assets/scenery-3.jpg";
-import "../assets/scenery-4.jpg";
-
 import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
 import { SCENERY } from "./constant/scenery";
 import { PokemonService } from "./pokemon.service";
@@ -10,9 +5,12 @@ import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
 
-const detailsContent = document.getElementById("details-content");
+const basicInfoWrapper = document.getElementById("basic-info");
+const abilityContainer = document.getElementById("ability-container");
+const basicStatsContainer = document.getElementById("basic-stats");
+const specialStatsContainer = document.getElementById("special-stats");
 
-const loadHeader = ({ name, details, sprites }) => {
+const renderHeader = ({ name, details, sprites }) => {
   document
     .getElementById("scenery")
     .setAttribute("src", SCENERY[Math.floor(Math.random() * 4) + 1]);
@@ -22,15 +20,10 @@ const loadHeader = ({ name, details, sprites }) => {
   spriteImg.setAttribute("src", sprites.animated);
   spriteImg.setAttribute("alt", `${name} image`);
 
-  const wrapper = document.createElement("div");
   const heightInFt = ((details.height / 10) * 3.281).toFixed(1);
   const weightInLbs = Math.floor((details.weight / 10) * 2.205);
 
-  wrapper.setAttribute(
-    "class",
-    "border-ph-dark-blue mx-auto flex max-w-sm gap-3 rounded-xl border p-4",
-  );
-  wrapper.innerHTML = `
+  basicInfoWrapper.innerHTML = `
     <span class="flex-1">
       <p>Height</p>
       <p class="inline text-lg font-bold">${details.height / 10} m</p>
@@ -43,14 +36,9 @@ const loadHeader = ({ name, details, sprites }) => {
       <p class="inline text-sm text-gray-500">( ${weightInLbs} lbs )</p>
     </span>
   `;
-
-  detailsContent.appendChild(wrapper);
 };
 
-const loadAbilities = (abilities) => {
-  const wrapper = document.createElement("div");
-  wrapper.setAttribute("class", "my-8 flex flex-col items-center");
-
+const renderAbilities = (abilities) => {
   const createBadge = (ability) => {
     const el = document.createElement("p");
     el.setAttribute("class", "badge badge-ghost badge-lg");
@@ -59,27 +47,15 @@ const loadAbilities = (abilities) => {
     return el.outerHTML;
   };
 
-  wrapper.innerHTML = `
+  abilityContainer.innerHTML = `
     <h2 class="text-secondary mb-4 text-xl font-bold">Abilities</h2>
     <div class="flex gap-2 flex-wrap">
       ${abilities.map(createBadge).join("")}
     </div>
   `;
-
-  detailsContent.appendChild(wrapper);
 };
 
-const loadStatistic = (stats) => {
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML =
-    '<h2 class="text-secondary mb-4 text-center text-xl font-bold">Statistics</h2>';
-  const statsContainer = document.createElement("div");
-  statsContainer.setAttribute("class", "grid grid-cols-1 gap-6 md:grid-cols-3");
-  const basicStat = document.createElement("div");
-  basicStat.setAttribute("class", "grid grid-cols-2 gap-6 md:col-span-2");
-  const specialStat = document.createElement("div");
-  specialStat.setAttribute("class", "grid grid-cols-2 gap-6 md:grid-cols-1");
-
+const renderStatistic = (stats) => {
   const basicStats = [];
   const specialStats = [];
 
@@ -88,7 +64,7 @@ const loadStatistic = (stats) => {
     else basicStats.push(stat);
   });
 
-  const createStatItem = ({ name, base }) => {
+  const createBasicStatItem = ({ name, base }) => {
     const el = document.createElement("div");
     el.setAttribute("class", "rounded-xl border p-3");
 
@@ -110,22 +86,12 @@ const loadStatistic = (stats) => {
     return el.outerHTML;
   };
 
-  basicStat.innerHTML = `
-      ${basicStats.map(createStatItem).join("")}
-
-  `;
-
-  specialStat.appendChild(SP_ATTACK_EL(specialStats[0].base));
-  specialStat.appendChild(SP_DEFENSE_EL(specialStats[1].base));
-
-  statsContainer.appendChild(basicStat);
-  statsContainer.appendChild(specialStat);
-  wrapper.appendChild(statsContainer);
-
-  detailsContent.appendChild(wrapper);
+  basicStatsContainer.innerHTML = basicStats.map(createBasicStatItem).join("");
+  specialStatsContainer.appendChild(SP_ATTACK_EL(specialStats[0].base));
+  specialStatsContainer.appendChild(SP_DEFENSE_EL(specialStats[1].base));
 };
 
-const main = () => {
+const details = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const data = pokemonService.pokemonDetails;
 
@@ -133,9 +99,9 @@ const main = () => {
     window.location.href = "http://localhost:8080";
   }
 
-  loadHeader(data);
-  loadAbilities(data.details.abilities);
-  loadStatistic(data.details.stats);
+  renderHeader(data);
+  renderAbilities(data.details.abilities);
+  renderStatistic(data.details.stats);
 };
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", details);
