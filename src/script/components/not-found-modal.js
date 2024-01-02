@@ -1,3 +1,5 @@
+import "../../assets/pokeball-logo.png";
+
 export class NotFoundModal extends HTMLElement {
   connectedCallback() {
     this.render();
