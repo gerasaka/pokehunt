@@ -1,5 +1,6 @@
 import "./components/error-modal";
 import "./components/not-found-modal";
+import "./components/pagination";
 import "./components/poke-card";
 
 import { PaginationService } from "./pagination";
@@ -72,7 +73,6 @@ const main = async () => {
 
   renderPokemonList();
   paginationService.initiatePagination();
-  errorModal.showModal();
 };
 
 document.addEventListener("DOMContentLoaded", main);
