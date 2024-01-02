@@ -12,7 +12,7 @@ export const errorModal = document.getElementById("error-modal");
 const searchInput = document.getElementById("search-input");
 document.getElementById("search-btn").addEventListener("click", handleSearch);
 
-export const loadPokemonList = () => {
+export const renderPokemonList = () => {
   const listItem = (pokemon, index) => {
     const container = document.createElement("a");
     container.setAttribute(
@@ -77,7 +77,7 @@ const main = async () => {
     await pokemonService.generatePokemonList(pokemonService.activeListUrl);
   } else await pokemonService.generatePokemonList();
 
-  loadPokemonList();
+  renderPokemonList();
   paginationService.initiatePagination();
 };
 

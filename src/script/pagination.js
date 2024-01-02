@@ -1,4 +1,4 @@
-import { errorModal, loadPokemonList, renderLoadingState } from "./main";
+import { errorModal, renderLoadingState, renderPokemonList } from "./main";
 
 export class PaginationService {
   _pokemonService = null;
@@ -41,7 +41,7 @@ export class PaginationService {
 
     this._pokemonService
       .generatePokemonList(endpoint)
-      .then(() => loadPokemonList())
+      .then(() => renderPokemonList())
       .catch(() => {
         revertPageNumber();
         errorModal.showModal();
