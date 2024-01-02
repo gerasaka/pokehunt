@@ -157,38 +157,7 @@
       </button>
     </div>
 
-    <!-- Not found modal -->
-    <dialog id="not-found-modal" class="modal">
-      <div class="modal-box">
-        <div class="my-4 flex justify-center gap-2">
-          <p class="text-6xl font-bold">4</p>
-          <img src="./assets/pokeball-logo.png" alt="logo pokeball" class="h-16 w-16" />
-          <p class="text-6xl font-bold">4</p>
-        </div>
-        <h3 class="text-center text-lg font-bold">Uh oh.. Pokémon not found</h3>
-        <p class="py-4 text-center">Check the spelling or try another name or id</p>
-      </div>
-      <form method="dialog" class="modal-backdrop">
-        <button></button>
-      </form>
-    </dialog>
-
-    <!-- General error modal -->
-    <dialog id="error-modal" class="modal">
-      <div class="modal-box">
-        <div class="my-4 flex justify-center gap-2">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png"
-            alt="logo pokeball"
-            class="h-32 w-32"
-          />
-        </div>
-        <h3 class="text-center text-lg font-bold">Oops.. something went wrong</h3>
-        <p class="py-4 text-center">Please try again later</p>
-      </div>
-      <form method="dialog" class="modal-backdrop">
-        <button></button>
-      </form>
-    </dialog>
+    <not-found-modal></not-found-modal>
+    <error-modal></error-modal>
   </body>
 </html>

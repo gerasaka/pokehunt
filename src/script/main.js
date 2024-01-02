@@ -1,4 +1,7 @@
+import "./components/error-modal";
+import "./components/not-found-modal";
 import "./components/poke-card";
+
 import { PaginationService } from "./pagination";
 import { PokemonService } from "./pokemon.service";
 import { snakeToTitleCase } from "./utils/string";
@@ -7,8 +10,8 @@ const pokemonService = new PokemonService();
 const paginationService = new PaginationService(pokemonService);
 
 const listContainer = document.getElementById("list-container");
-const notFoundModal = document.getElementById("not-found-modal");
-export const errorModal = document.getElementById("error-modal");
+const notFoundModal = document.querySelector("not-found-modal");
+export const errorModal = document.querySelector("error-modal");
 
 const searchInput = document.getElementById("search-input");
 document.getElementById("search-btn").addEventListener("click", handleSearch);
