@@ -1,5 +1,5 @@
+import "./components/ability-list";
 import "./components/basic-info-card";
-import "./components/stat-card";
 import "./components/stat-list";
 
 import { SCENERY } from "./constant/scenery";
@@ -9,7 +9,7 @@ import { snakeToTitleCase } from "./utils/string";
 const pokemonService = new PokemonService();
 
 const basicInfoWrapper = document.getElementById("basic-info");
-const abilityContainer = document.getElementById("ability-container");
+const abilityWrapper = document.getElementById("ability-container");
 const statsWrapper = document.getElementById("stats-wrapper");
 
 const renderHeader = ({ name, details, sprites }) => {
@@ -29,21 +29,9 @@ const renderHeader = ({ name, details, sprites }) => {
   basicInfoWrapper.appendChild(infoCard);
 };
 
-const renderAbilities = (abilities) => {
-  const createBadge = (ability) => {
-    const el = document.createElement("p");
-    el.setAttribute("class", "badge badge-ghost badge-lg");
-    el.innerText = snakeToTitleCase(ability);
-
-    return el.outerHTML;
-  };
-
-  abilityContainer.innerHTML = `
-    <h2 class="text-secondary mb-4 text-xl font-bold">Abilities</h2>
-    <div class="flex gap-2 flex-wrap">
-      ${abilities.map(createBadge).join("")}
-    </div>
-  `;
+const renderAbilities = () => {
+  const abilityList = document.createElement("ability-list");
+  abilityWrapper.appendChild(abilityList);
 };
 
 const renderStatistic = () => {
