@@ -5,15 +5,6 @@ export class AbilityList extends HTMLElement {
     this.render();
   }
 
-  createStatItem(label, value, type) {
-    const statItem = document.createElement("stat-card");
-    statItem.setAttribute("label", label);
-    statItem.setAttribute("val", value);
-    statItem.setAttribute("stat-type", type);
-
-    return statItem.outerHTML;
-  }
-
   get abilities() {
     const rawDetails = sessionStorage.getItem("pokeDetails");
     if (rawDetails) return JSON.parse(rawDetails).details.abilities;

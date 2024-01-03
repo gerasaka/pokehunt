@@ -5,15 +5,6 @@ export class PokeCard extends HTMLElement {
     this.render();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
-
-  static get observedAttributes() {
-    return ["name", "image", "href"];
-  }
-
   render() {
     this.setAttribute(
       "class",
@@ -21,7 +12,7 @@ export class PokeCard extends HTMLElement {
     );
 
     this.innerHTML = `
-      <a class="">
+      <a>
         <img class="w-full" style="margin-top: -35%" onerror="this.onerror=null;this.src='./assets/no-image.png';this.setAttribute('class', 'p-4')">
         <h2 class="text-center text-xl font-bold md:text-2xl"></h2>
       </a>
@@ -30,7 +21,10 @@ export class PokeCard extends HTMLElement {
     this.querySelector("a").href = this.getAttribute("href");
     this.querySelector("h2").textContent = this.getAttribute("name");
 
-    const imageUrl = this.getAttribute("image");
+    const id = this.getAttribute("id");
+    const imageUrl =
+      this.getAttribute("image") ??
+      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     const image = this.querySelector("img");
 
     image.src = imageUrl;

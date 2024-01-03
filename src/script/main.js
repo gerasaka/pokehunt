@@ -3,8 +3,8 @@ import "./components/not-found-modal";
 import "./components/pagination-bar";
 import "./components/poke-card";
 
-import { PaginationService } from "./pagination";
-import { PokemonService } from "./pokemon.service";
+import { PaginationService } from "./utils/pagination.service";
+import { PokemonService } from "./utils/pokemon.service";
 import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
@@ -18,11 +18,15 @@ const searchInput = document.getElementById("search-input");
 document.getElementById("search-btn").addEventListener("click", handleSearch);
 
 export const renderPokemonList = () => {
-  const listItem = (pokemon, index) => {
+  const listItem = (pokemon) => {
     const pokeCard = document.createElement("poke-card");
     pokeCard.setAttribute("image", pokemon.sprites.official);
     pokeCard.setAttribute("name", snakeToTitleCase(pokemon.name));
-    pokeCard.setAttribute("href", `http://localhost:8080/details.html?id=${index}`);
+    pokeCard.id = pokemon.id;
+    pokeCard.setAttribute(
+      "href",
+      `${window.location.protocol}//${window.location.host}/details.html?id=${pokemon.id}`,
+    );
 
     pokeCard.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
 
@@ -32,8 +36,8 @@ export const renderPokemonList = () => {
   /** reset pokemon list */
   listContainer.innerHTML = "";
 
-  pokemonService.pokemonList.forEach((pokemon, i) => {
-    listContainer.appendChild(listItem(pokemon, i));
+  pokemonService.pokemonList.forEach((pokemon) => {
+    listContainer.appendChild(listItem(pokemon));
   });
 
   paginationService.setPagination();
@@ -58,7 +62,7 @@ async function handleSearch() {
   if (res.status === 200) {
     const data = pokemonService.cleanPokemonDetails(await res.json());
     pokemonService.pokemonDetails = data;
-    window.location.href = `http://localhost:8080/details.html?id=${data.id}`;
+    window.location.href = `${window.location.protocol}//${window.location.host}/details.html?id=${data.id}`;
   } else if (res.status === 404) {
     notFoundModal.showModal();
   } else errorModal.showModal();

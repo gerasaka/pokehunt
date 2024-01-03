@@ -5,15 +5,6 @@ export class PaginateButton extends HTMLElement {
     this.render();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
-
-  static get observedAttributes() {
-    return ["id", "disabled"];
-  }
-
   set clickEvent(event) {
     this._clickEvent = event;
     this.render();

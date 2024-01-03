@@ -3,15 +3,6 @@ export class InfoCard extends HTMLElement {
     this.render();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
-
-  static get observedAttributes() {
-    return ["width", "height"];
-  }
-
   render() {
     this.setAttribute(
       "class",

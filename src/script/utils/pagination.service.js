@@ -1,4 +1,4 @@
-import { errorModal, renderLoadingState, renderPokemonList } from "./main";
+import { errorModal, renderLoadingState, renderPokemonList } from "../main";
 
 export class PaginationService {
   _pokemonService = null;

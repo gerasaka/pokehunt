@@ -6,15 +6,6 @@ export class StatCard extends HTMLElement {
     this.render();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
-
-  static get observedAttributes() {
-    return ["label", "value", "stat-type"];
-  }
-
   render() {
     const label = this.getAttribute("label");
     const value = this.getAttribute("val");
