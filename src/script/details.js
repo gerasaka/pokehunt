@@ -1,3 +1,5 @@
+import "./components/basic-info-card";
+
 import { SP_ATTACK_EL, SP_DEFENSE_EL } from "./constant/details";
 import { SCENERY } from "./constant/scenery";
 import { PokemonService } from "./pokemon.service";
@@ -20,22 +22,11 @@ const renderHeader = ({ name, details, sprites }) => {
   spriteImg.setAttribute("src", sprites.animated);
   spriteImg.setAttribute("alt", `${name} image`);
 
-  const heightInFt = ((details.height / 10) * 3.281).toFixed(1);
-  const weightInLbs = Math.floor((details.weight / 10) * 2.205);
+  const infoCard = document.createElement("basic-info-card");
+  infoCard.setAttribute("height", details.height);
+  infoCard.setAttribute("weight", details.weight);
 
-  basicInfoWrapper.innerHTML = `
-    <span class="flex-1">
-      <p>Height</p>
-      <p class="inline text-lg font-bold">${details.height / 10} m</p>
-      <p class="inline text-sm text-gray-500">( ${heightInFt} ft )</p>
-    </span>
-    <span class="bg-ph-dark-blue h-10 w-px self-center"></span>
-    <span class="flex-1 text-right">
-      <p class="text-right">Weight</p>
-      <p class="inline text-lg font-bold">${details.weight / 10} kg</p>
-      <p class="inline text-sm text-gray-500">( ${weightInLbs} lbs )</p>
-    </span>
-  `;
+  basicInfoWrapper.appendChild(infoCard);
 };
 
 const renderAbilities = (abilities) => {
