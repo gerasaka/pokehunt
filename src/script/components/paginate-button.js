@@ -1,4 +1,4 @@
-import { ICON } from "../constant/main";
+import { ICON } from "../constant/icons";
 
 export class PaginateButton extends HTMLElement {
   connectedCallback() {
