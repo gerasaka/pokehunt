@@ -1,4 +1,5 @@
 import { ICON_SPECIAL } from "../constant/icons";
+import { snakeToTitleCase } from "../utils/string";
 
 export class StatCard extends HTMLElement {
   connectedCallback() {
@@ -23,7 +24,7 @@ export class StatCard extends HTMLElement {
       this.setAttribute("class", "rounded-xl border p-3");
 
       this.innerHTML = `
-        <p class="mb-1">${label}</p>
+        <p class="mb-1">${snakeToTitleCase(label)}</p>
         <div class="flex items-center gap-4">
           <input
             type="range"
@@ -40,7 +41,7 @@ export class StatCard extends HTMLElement {
       this.setAttribute("class", "bg-primary rounded-xl p-3");
 
       this.innerHTML = `
-        <p class="mb-1">${label}</p>
+        <p class="mb-1">${snakeToTitleCase(label)}</p>
         <div class="flex items-center justify-between gap-4">
           ${ICON_SPECIAL[label]}
           <input

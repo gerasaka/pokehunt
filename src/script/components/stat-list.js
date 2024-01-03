@@ -1,3 +1,5 @@
+import "./stat-card";
+
 export class StatList extends HTMLElement {
   connectedCallback() {
     this.render();
