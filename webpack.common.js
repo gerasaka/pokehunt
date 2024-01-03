@@ -10,6 +10,10 @@ module.exports = {
     rules: [
       { test: /\.(png|jpg|jpeg|svg|webp|gif)$/i, type: "asset/resource" },
       { test: /\.html$/i, loader: "html-loader" },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: populateHtmlPlugins(pages),

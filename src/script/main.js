@@ -1,11 +1,11 @@
+import { PaginationService } from "./utils/pagination.service";
+import { PokemonService } from "./utils/pokemon.service";
+import { snakeToTitleCase } from "./utils/string";
+
 import "./components/error-modal";
 import "./components/not-found-modal";
 import "./components/pagination-bar";
 import "./components/poke-card";
-
-import { PaginationService } from "./utils/pagination.service";
-import { PokemonService } from "./utils/pokemon.service";
-import { snakeToTitleCase } from "./utils/string";
 
 const pokemonService = new PokemonService();
 const paginationService = new PaginationService(pokemonService);
@@ -23,10 +23,7 @@ export const renderPokemonList = () => {
     pokeCard.setAttribute("image", pokemon.sprites.official);
     pokeCard.setAttribute("name", snakeToTitleCase(pokemon.name));
     pokeCard.id = pokemon.id;
-    pokeCard.setAttribute(
-      "href",
-      `${window.location.protocol}//${window.location.host}/details.html?id=${pokemon.id}`,
-    );
+    pokeCard.setAttribute("href", `./details.html?id=${pokemon.id}`);
 
     pokeCard.addEventListener("click", () => (pokemonService.pokemonDetails = pokemon));
 
@@ -62,7 +59,7 @@ async function handleSearch() {
   if (res.status === 200) {
     const data = pokemonService.cleanPokemonDetails(await res.json());
     pokemonService.pokemonDetails = data;
-    window.location.href = `${window.location.protocol}//${window.location.host}/details.html?id=${data.id}`;
+    window.location.href = `./details.html?id=${data.id}`;
   } else if (res.status === 404) {
     notFoundModal.showModal();
   } else errorModal.showModal();

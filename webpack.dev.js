@@ -8,12 +8,4 @@ module.exports = merge(common, {
     assetModuleFilename: "assets/[name][ext]",
   },
   devtool: "source-map",
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
-    ],
-  },
 });

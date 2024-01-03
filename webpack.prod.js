@@ -13,10 +13,6 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [

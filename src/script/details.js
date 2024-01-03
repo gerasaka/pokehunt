@@ -1,10 +1,10 @@
-import "./components/ability-list";
-import "./components/basic-info-card";
-import "./components/stat-list";
-
 import { SCENERY } from "./constant/scenery";
 import { PokemonService } from "./utils/pokemon.service";
 import { snakeToTitleCase } from "./utils/string";
+
+import "./components/ability-list";
+import "./components/basic-info-card";
+import "./components/stat-list";
 
 const pokemonService = new PokemonService();
 
@@ -48,7 +48,7 @@ const details = () => {
   const data = pokemonService.pokemonDetails;
 
   if (!queryParams.has("id") || data.id === undefined) {
-    window.location.href = `${window.location.protocol}//${window.location.host}`;
+    window.location.href = `./index.html`;
   }
 
   renderHeader(data);
