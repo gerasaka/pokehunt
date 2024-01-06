@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeHunt</title>
+    <link rel="icon" href="./assets/pokehunt.ico" type="image/x-icon" />
+  </head>
+  <body class="mx-auto flex max-w-screen-lg flex-col gap-6 p-4 md:p-10">
+    <div class="navbar flex-col justify-between md:flex-row">
+      <a href="./index.html">
+        <img src="./assets/pokehunt.png" alt="pokehunt logo" class="h-16" />
+      </a>
+
+      <div class="join mt-4 md:mt-0">
+        <input
+          id="search-input"
+          class="input join-item input-primary w-full"
+          placeholder="Input name or id"
+        />
+        <button id="search-btn" class="btn btn-primary join-item">
+          Search
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="16"
+            height="16"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <h1 class="mt-4 text-center text-2xl font-bold">Collect them all!</h1>
+
+    <div
+      id="list-container"
+      class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5"
+      style="margin-top: -20px"
+    ></div>
+
+    <pagination-bar></pagination-bar>
+
+    <not-found-modal></not-found-modal>
+    <error-modal></error-modal>
+  </body>
+</html>
