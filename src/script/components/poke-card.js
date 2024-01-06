@@ -1,5 +1,3 @@
-import "../../assets/no-image.png";
-
 export class PokeCard extends HTMLElement {
   connectedCallback() {
     this.render();
