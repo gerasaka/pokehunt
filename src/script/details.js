@@ -6,6 +6,8 @@ import "./components/ability-list";
 import "./components/basic-info-card";
 import "./components/stat-list";
 
+const noImage = require("../assets/no-image.png");
+
 const pokemonService = new PokemonService();
 
 const basicInfoWrapper = document.getElementById("basic-info");
@@ -24,6 +26,10 @@ const renderHeader = ({ name, details, sprites, id }) => {
     sprites.animated ??
       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
   );
+  spriteImg.onerror = () => {
+    spriteImg.setAttribute("src", noImage);
+    spriteImg.onerror = null;
+  };
   spriteImg.setAttribute("alt", `${name} image`);
 
   const infoCard = document.createElement("basic-info-card");
