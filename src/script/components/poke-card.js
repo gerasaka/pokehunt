@@ -1,3 +1,5 @@
+const noImage = require("../../assets/no-image.png");
+
 export class PokeCard extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -11,7 +13,7 @@ export class PokeCard extends HTMLElement {
 
     this.innerHTML = `
       <a>
-        <img class="w-full" style="margin-top: -35%" onerror="this.onerror=null;this.src='./assets/no-image.png';this.setAttribute('class', 'p-4')">
+        <img class="w-full" style="margin-top: -35%" onerror="this.onerror=null;this.src='${noImage}';this.setAttribute('class', 'p-4')">
         <h2 class="text-center text-xl font-bold md:text-2xl"></h2>
       </a>
     `;
